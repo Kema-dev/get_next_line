@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/01 13:35:49 by jjourdan          #+#    #+#             */
-/*   Updated: 2020/12/01 21:09:00 by jjourdan         ###   ########lyon.fr   */
+/*   Created: 2020/12/01 16:28:58 by jjourdan          #+#    #+#             */
+/*   Updated: 2020/12/01 21:19:19 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "get_next_line.h"
+#include <fcntl.h>
+#include <stdio.h>
 
-# include <unistd.h>
-# include <stdlib.h>
+int	main(void)
+{
+	char	**line;
+	int		fd;
+	size_t	i;
 
-char	*ft_get_save(char *save);
-char	*ft_get_line(char *save);
-int		get_next_line(int fd, char **line);
-void	*ft_memset(void *s, int c, size_t n);
-size_t	ft_strlen(const char *s);
-char	*ft_strcat(char *dest, const char *src);
-char	*ft_strjoin(char *s1, char *s2);
-int		ft_new_line(char *save);
-
-#endif
+	i = 0;
+	fd = open("normal.txt", O_RDONLY);
+	line = malloc(sizeof(char **) * 500);
+	while (i < 500)
+	{
+		printf("out=%d ", get_next_line(fd, line));
+		printf("line=%s\n", *line);
+		line++;
+		i++;
+	}
+	line -= i;
+	free(line);
+}

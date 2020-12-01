@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:36:38 by jjourdan          #+#    #+#             */
-/*   Updated: 2020/12/01 16:18:19 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2020/12/01 21:15:37 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,29 +20,28 @@ char	*ft_get_save(char *save)
 
 	i = 0;
 	j = 0;
-	while (save[i] != '\n')
+	while ((save[i] != '\n') && (save[i] != 0))
 	{
 		if (save[i] == 0)
-		{
-			free(save);
 			return (NULL);
-		}
 		i++;
 	}
+	i++;
 	if (!(out = malloc(sizeof(char) * (ft_strlen(&save[i]) + 1))))
 		return (NULL);
 	while (save[i] != 0)
 	{
 		out[j] = save[i];
+		i++;
 		j++;
 	}
-	free(save);
+	out[j] = 0;
 	return (out);
 }
 
 char	*ft_get_line(char *save)
 {
-	size_t	i;
+	int		i;
 	char	*out;
 
 	i = 0;
@@ -52,7 +51,7 @@ char	*ft_get_line(char *save)
 		return (NULL);
 	out[i] = 0;
 	i--;
-	while (save[i] != 0)
+	while (i >= 0)
 	{
 		out[i] = save[i];
 		i--;
@@ -66,6 +65,7 @@ int		get_next_line(int fd, char **line)
 	char		*buf;
 	int			head;
 
+	head = 1;
 	if ((fd < 0) || (!line) || (BUFFER_SIZE <= 0) || (!(buf = \
 					malloc(sizeof(char) * (BUFFER_SIZE + 1)))))
 		return (-1);
@@ -76,13 +76,16 @@ int		get_next_line(int fd, char **line)
 			free(buf);
 			return (-1);
 		}
-		buf[head] = 0;
+		buf[BUFFER_SIZE] = 0;
 		save = ft_strjoin(save, buf);
 	}
+	free(buf);
 	*line = ft_get_line(save);
 	save = ft_get_save(save);
-	free(buf);
 	if (head == 0)
+	{
+		free(save);
 		return (0);
+	}
 	return (1);
 }
