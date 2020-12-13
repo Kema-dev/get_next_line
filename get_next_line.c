@@ -6,7 +6,11 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:36:38 by jjourdan          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/12/13 02:06:47 by jjourdan         ###   ########lyon.fr   */
+=======
+/*   Updated: 2020/12/02 18:44:26 by jjourdan         ###   ########lyon.fr   */
+>>>>>>> 18d4a2a85d12d8d47d3bd2a34410674d80662fb2
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +54,8 @@ char	*ft_get_line(char *save)
 	if (!(out = malloc(sizeof(char) * (i + 1))))
 		return (NULL);
 	out[i] = 0;
-	i--;
-	while (i >= 0)
-	{
+	while (--i >= 0)
 		out[i] = save[i];
-		i--;
-	}
 	return (out);
 }
 
@@ -73,10 +73,16 @@ int		get_next_line(int fd, char **line)
 	{
 		if ((head = read(fd, buf, BUFFER_SIZE)) < 0)
 		{
+<<<<<<< HEAD
 			free(save); // ! si fd < 0 direct free un non malloc
+=======
+			free(buf);
+			if (save)
+				free(save);
+>>>>>>> 18d4a2a85d12d8d47d3bd2a34410674d80662fb2
 			return (-1);
 		}
-		buf[BUFFER_SIZE] = 0;
+		buf[head] = 0;
 		save = ft_strjoin(save, buf);
 	}
 	printf("buf=%s\n", buf); // ! quand atteint EOF erreur memoire
