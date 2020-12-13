@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:36:50 by jjourdan          #+#    #+#             */
-/*   Updated: 2020/12/13 01:42:59 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2020/12/13 19:18:42 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ char	*ft_strcat(char *dest, const char *src)
 	j = 0;
 	if (!src)
 		return ((char *)dest);
+	if (!dest)
+		return (NULL);
 	while (dest[i] != 0)
 		i++;
 	while (src[j] != 0)
@@ -70,7 +72,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	tot_len = ft_strlen(s1) + ft_strlen(s2);
 	if (!(out = malloc(sizeof(char) * (tot_len + 1))))
 		return (NULL);
-	out = ft_memset(out, 0, tot_len);
+	out = ft_memset(out, 0, tot_len + 1);
 	ft_strcat(out, (char *)s1);
 	ft_strcat(out, (char *)s2);
 	out[tot_len] = 0;

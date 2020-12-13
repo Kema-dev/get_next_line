@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 16:28:58 by jjourdan          #+#    #+#             */
-/*   Updated: 2020/12/13 02:01:38 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2020/12/13 19:18:43 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,14 @@ int	main(void)
 	size_t	nb_itt;
 
 	i = 0;
-	nb_itt = 500;
-	fd = open("normal.txt", O_RDONLY);
+	nb_itt = 2;
+	fd = open("long_line.txt", O_RDONLY);
 	line = malloc(sizeof(char **) * nb_itt);
 	while (i < nb_itt)
 	{
 		printf("out=%d ", get_next_line(fd, line));
 		printf("line=%s\n", *line);
+		printf("i=%ld\n", i);
 		free(*line);
 		line++;
 		i++;
