@@ -73,13 +73,8 @@ int		get_next_line(int fd, char **line)
 	{
 		if ((head = read(fd, buf, BUFFER_SIZE)) < 0)
 		{
-<<<<<<< HEAD
 			free(save); // ! si fd < 0 direct free un non malloc
-=======
-			free(buf);
-			if (save)
-				free(save);
->>>>>>> 18d4a2a85d12d8d47d3bd2a34410674d80662fb2
+			// ! free buf
 			return (-1);
 		}
 		buf[head] = 0;
