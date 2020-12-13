@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:36:38 by jjourdan          #+#    #+#             */
-/*   Updated: 2020/12/01 21:15:37 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2020/12/13 02:06:47 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,13 @@ int		get_next_line(int fd, char **line)
 	{
 		if ((head = read(fd, buf, BUFFER_SIZE)) < 0)
 		{
-			free(buf);
+			free(save); // ! si fd < 0 direct free un non malloc
 			return (-1);
 		}
 		buf[BUFFER_SIZE] = 0;
 		save = ft_strjoin(save, buf);
 	}
+	printf("buf=%s\n", buf); // ! quand atteint EOF erreur memoire
 	free(buf);
 	*line = ft_get_line(save);
 	save = ft_get_save(save);
