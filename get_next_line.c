@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/13 12:00:42 by jjourdan          #+#    #+#             */
-/*   Updated: 2020/12/13 19:14:56 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2020/12/16 22:19:09 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ int		get_next_line(int fd, char **line)
 	{
 		if ((head = read(fd, buf, BUFFER_SIZE)) < 0)
 		{
-			free(save); // ! if fd < 0 direct free on non malloc
-			// ! free buf
+			free(save);
+			free(buf);
 			return (-1);
 		}
 		buf[head] = 0;
