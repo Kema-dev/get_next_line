@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:36:50 by jjourdan          #+#    #+#             */
-/*   Updated: 2020/12/13 19:18:42 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2020/12/20 23:11:52 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,15 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strcat(char *dest, const char *src)
+char	*ft_strcat(char *dest, const char *src, size_t i)
 {
-	size_t i;
 	size_t j;
 
-	i = 0;
 	j = 0;
 	if (!src)
 		return ((char *)dest);
 	if (!dest)
 		return (NULL);
-	while (dest[i] != 0)
-		i++;
 	while (src[j] != 0)
 	{
 		dest[i] = src[j];
@@ -47,34 +43,21 @@ char	*ft_strcat(char *dest, const char *src)
 	return (dest);
 }
 
-void	*ft_memset(void *s, int c, size_t n)
-{
-	unsigned char	*p;
-
-	if (!s)
-		return (NULL);
-	p = (unsigned char *)s;
-	while (n > 0)
-	{
-		p[n - 1] = c;
-		n--;
-	}
-	return (s);
-}
-
 char	*ft_strjoin(char *s1, char *s2)
 {
+	size_t	i;
 	size_t	tot_len;
 	char	*out;
 
 	if (!s2)
 		return ((char *)s1);
-	tot_len = ft_strlen(s1) + ft_strlen(s2);
+	i = ft_strlen(s1);
+	tot_len = i + ft_strlen(s2);
 	if (!(out = malloc(sizeof(char) * (tot_len + 1))))
 		return (NULL);
-	out = ft_memset(out, 0, tot_len + 1);
-	ft_strcat(out, (char *)s1);
-	ft_strcat(out, (char *)s2);
+	*out = 0;
+	ft_strcat(out, (char *)s1, 0);
+	ft_strcat(out, (char *)s2, i);
 	out[tot_len] = 0;
 	free(s1);
 	return (out);

@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 22:24:55 by jjourdan          #+#    #+#             */
-/*   Updated: 2020/12/16 22:24:55 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2020/12/20 22:17:22 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	out = ft_memset(out, 0, tot_len + 1);
 	ft_strcat(out, (char *)s1);
 	ft_strcat(out, (char *)s2);
-	out[tot_len] = 0;
 	free(s1);
 	return (out);
 }
