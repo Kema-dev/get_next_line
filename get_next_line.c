@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/13 12:00:42 by jjourdan          #+#    #+#             */
-/*   Updated: 2020/12/20 23:04:34 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2020/12/20 23:23:53 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,13 @@ char	*ft_get_line(char *save)
 	return (out);
 }
 
+int		ft_error_exit(char *save, char *buf)
+{
+	free(save);
+	free(buf);
+	return (-1);
+}
+
 int		get_next_line(int fd, char **line)
 {
 	static char	*save;
@@ -68,21 +75,15 @@ int		get_next_line(int fd, char **line)
 	while ((ft_new_line(save) != 0) && (head != 0))
 	{
 		if ((head = read(fd, buf, BUFFER_SIZE)) < 0)
-		{
-			free(save);
-			free(buf);
-			return (-1);
-		}
+			return (ft_error_exit(save, buf));
 		buf[head] = 0;
 		save = ft_strjoin(save, buf);
 	}
 	free(buf);
 	*line = ft_get_line(save);
 	save = ft_get_save(save);
-	if (head == 0)
-	{
-		free(save);
-		return (0);
-	}
-	return (1);
+	if (head != 0)
+		return (1);
+	free(save);
+	return (0);
 }
