@@ -6,7 +6,7 @@
 /*   By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 16:28:58 by jjourdan          #+#    #+#             */
-/*   Updated: 2021/01/13 12:47:27 by jjourdan         ###   ########lyon.fr   */
+/*   Updated: 2021/01/26 10:41:43 by jjourdan         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(void)
 	{
 		printf("out=%d ", get_next_line(fd, line));
 		printf("line=%s\n", *line);
-		printf("line=%ld\n", i+1);
+		printf("line=%ld\n", i + 1);
 		free(*line);
 		line++;
 		i++;
