@@ -6,7 +6,7 @@
 #    By: jjourdan <jjourdan@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/23 12:30:03 by jjourdan          #+#    #+#              #
-#    Updated: 2021/01/23 12:53:06 by jjourdan         ###   ########lyon.fr    #
+#    Updated: 2021/01/26 13:19:10 by jjourdan         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ RM			=	rm -f
 
 FLAGS		=	-Wall -Wextra -Werror -D BUFFER_SIZE=64
 
-NAME		=	get_next_line.a
+NAME		=	libgnl.a
 
 SRC			=	get_next_line.c \
 				get_next_line_utils.c
